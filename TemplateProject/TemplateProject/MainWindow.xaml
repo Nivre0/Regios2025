@@ -6,25 +6,29 @@
         xmlns:local="clr-namespace:TemplateProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> <!-- Input Fields -->
+            <RowDefinition Height="Auto"/> <!-- Submit Button -->
+            <RowDefinition Height="*"/>   <!-- DataGrid (Person List) -->
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" Text="Enter Your Details" FontSize="18" FontWeight="Bold" 
-                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-        <TextBox Grid.Row="1" Name="InputField1" Width="200" Height="30" Tag="Enter First Value" HorizontalAlignment="Center"/>
+        <!-- Input Fields -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Content="Name:"/><TextBox Name="NameInput" Width="150" Margin="5" Tag="Enter Name"/>
+            <Label Content="Age:"/><TextBox Name="AgeInput" Width="100" Margin="5" Tag="Enter Age"/>
+        </StackPanel>
 
-        <TextBox Grid.Row="2" Name="InputField2" Width="200" Height="30" 
-                 Tag="Enter Second Value" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+        <!-- Submit Button -->
+        <Button Grid.Row="1" Content="Add Person" Width="120" Height="30"
+                Click="SubmitButton_Click" HorizontalAlignment="Center" Margin="0,10"/>
 
-        <Button Grid.Row="3" Content="Process Input" Width="120" Height="40" 
-                Click="ProcessInput_Click" HorizontalAlignment="Center"/>
+        <!-- DataGrid to Display Persons -->
+        <DataGrid Grid.Row="2" Name="PersonDataGrid" AutoGenerateColumns="True" 
+                  Height="200" Margin="0,10,0,0"/>
     </Grid>
+        
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Background">
