@@ -91,6 +91,8 @@ public partial class MainWindow : Window
                         conn.Execute(sql, new { Id = personId });
                     }
 
+                    Console.WriteLine($"Deleted Person: {personId}");
+
                     LoadPersons(); // Refresh list after deletion
                 }
                 catch (Exception ex)
@@ -101,4 +103,31 @@ public partial class MainWindow : Window
         }
     }
 
+    private void EditPerson_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.Tag is String personId)
+        {
+
+            using (var conn = new SqlConnection(_appSettings.DbSettings.ConnectionString))
+            {
+                conn.Open();
+                string sql = "SELECT Id, Name, Age FROM Person WHERE Id = @Id";
+                var person = conn.QuerySingleOrDefault<Person>(sql, new { Id = personId });
+
+                if (person == null)
+                {
+                    MessageBox.Show("Person not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var editWindow = new EditWindow(person);
+                bool? result = editWindow.ShowDialog();
+
+                if (result == true)
+                {
+                    LoadPersons(); // Refresh the list after editing
+                }
+            }
+        }
+    }
 }

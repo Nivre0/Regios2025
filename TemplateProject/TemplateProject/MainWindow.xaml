@@ -40,9 +40,17 @@
                 <DataGridTemplateColumn Header="Actions" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete" Background="Red" Foreground="White"
-                                    Click="DeletePerson_Click"
-                                    Tag="{Binding Id}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Edit Button -->
+                                <Button Content="Edit" Background="Blue" Foreground="White"
+                                        Click="EditPerson_Click"
+                                        Tag="{Binding Id}" Margin="2"/>
+                
+                                <!-- Delete Button -->
+                                <Button Content="Delete" Background="Red" Foreground="White"
+                                        Click="DeletePerson_Click"
+                                        Tag="{Binding Id}" Margin="2"/>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
