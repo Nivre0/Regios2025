@@ -7,6 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Enter Your Details" FontSize="18" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
+        <TextBox Grid.Row="1" Name="InputField1" Width="200" Height="30" Tag="Enter First Value" HorizontalAlignment="Center"/>
+
+        <TextBox Grid.Row="2" Name="InputField2" Width="200" Height="30" 
+                 Tag="Enter Second Value" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+
+        <Button Grid.Row="3" Content="Process Input" Width="120" Height="40" 
+                Click="ProcessInput_Click" HorizontalAlignment="Center"/>
     </Grid>
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=TextBox}}"
+                                       Foreground="Gray" VerticalAlignment="Center" Padding="5"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 </Window>

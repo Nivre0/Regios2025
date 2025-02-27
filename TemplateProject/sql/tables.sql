@@ -1,5 +1,5 @@
 CREATE TABLE Person(
-    Id int,
+    Id varchar(50),
     Name varchar(50),
     Age int
 )
