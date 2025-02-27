@@ -41,12 +41,22 @@ public partial class MainWindow : Window
     
     private void LoadPersons()
     {
+        
         using (var conn = new SqlConnection(_appSettings.DbSettings.ConnectionString))
         {
             conn.Open();
             string sql = "SELECT Id, Name, Age FROM Person";
             List<Person> persons = conn.Query<Person>(sql).AsList();
-            PersonDataGrid.ItemsSource = persons; 
+            Console.WriteLine($"Loaded {persons.Count} persons from DB.");
+            // Ensure UI update on the main thread
+
+            Dispatcher.Invoke(() =>
+            {
+                PersonDataGrid.ItemsSource = null; 
+                PersonDataGrid.Items.Clear();      
+                PersonDataGrid.ItemsSource = persons; 
+            });
+
         }
     }
     
@@ -62,4 +72,33 @@ public partial class MainWindow : Window
         NameInput.Text = "";
         AgeInput.Text = "";
     }
+    
+    private void DeletePerson_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement element && element.Tag is String personId)
+        {
+            MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete this person?", "Confirm Deletion",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    using (var conn = new SqlConnection(_appSettings.DbSettings.ConnectionString))
+                    {
+                        conn.Open();
+                        string sql = "DELETE FROM Person WHERE Id = @Id";
+                        conn.Execute(sql, new { Id = personId });
+                    }
+
+                    LoadPersons(); // Refresh list after deletion
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting person: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+    }
+
 }

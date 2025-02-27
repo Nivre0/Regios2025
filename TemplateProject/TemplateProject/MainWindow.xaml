@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TemplateProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     
@@ -25,8 +24,31 @@
                 Click="SubmitButton_Click" HorizontalAlignment="Center" Margin="0,10"/>
 
         <!-- DataGrid to Display Persons -->
-        <DataGrid Grid.Row="2" Name="PersonDataGrid" AutoGenerateColumns="True" 
-                  Height="200" Margin="0,10,0,0"/>
+        <DataGrid Grid.Row="2" Name="PersonDataGrid" AutoGenerateColumns="False"
+                  Height="auto" Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <!-- Id Column -->
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="Auto"/>
+
+                <!-- Name Column -->
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
+
+                <!-- Age Column -->
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="Auto"/>
+
+                <!-- Delete Button Column (Last) -->
+                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Background="Red" Foreground="White"
+                                    Click="DeletePerson_Click"
+                                    Tag="{Binding Id}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
     </Grid>
         
     <Window.Resources>
