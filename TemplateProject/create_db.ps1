@@ -4,10 +4,8 @@ function Invoke-SqlScript {
     param (
         [string]$Message,
         [string]$ScriptPath,
-        [string]$DatabaseName = "DatabaseName"
+        [string]$DatabaseName = "TestDB"
     )
-
-    Write-Host $Message
     
     $fullScriptPath = "$PSScriptRoot/$ScriptPath"
     
@@ -19,3 +17,7 @@ Invoke-SqlScript `
   -Message "Creating DB DatabaseName" `
   -ScriptPath "sql/database.sql" `
   -DatabaseName "master" 
+    
+Invoke-SqlScript `
+  -Message "Creating tables" `
+  -ScriptPath "sql/tables.sql"

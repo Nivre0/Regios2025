@@ -13,15 +13,25 @@ You need following programs for running the project:
 
 ### Steps
 1. Unzip the folder
-2. Navigate to the project directory:  
+#### Prepare DB
+1. Navigate to soloution
+    ```
+    cd Regios/TemplateProject
+    ```
+2. Run the script for preparing the DB
+    ```
+    ./create_db.ps1
+    ```
+#### Start application
+1. Navigate to the project directory:  
    ```sh
    cd Regios/TemplateProject/TemplateProject
    ```
-3. Build project:  
+2. Build project:  
    ```sh
    dotnet build
    ```
-4. Start the application:  
+3. Start the application:  
    ```sh
    dotnet run
    ```
