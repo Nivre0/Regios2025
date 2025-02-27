@@ -18,3 +18,4 @@ C:\work\Regios\TemplateProject\TemplateProject\obj\Debug\net8.0-windows\refint\T
 C:\work\Regios\TemplateProject\TemplateProject\obj\Debug\net8.0-windows\TemplateProject.pdb
 C:\work\Regios\TemplateProject\TemplateProject\obj\Debug\net8.0-windows\TemplateProject.genruntimeconfig.cache
 C:\work\Regios\TemplateProject\TemplateProject\obj\Debug\net8.0-windows\ref\TemplateProject.dll
+C:\work\Regios\TemplateProject\TemplateProject\obj\Debug\net8.0-windows\TemplateProject.sourcelink.json
