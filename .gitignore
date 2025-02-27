@@ -1,0 +1,72 @@
+# Rider / JetBrains IDE
+.idea/
+*.sln.iml
+*.sln.DotSettings
+*.userprefs
+*.csproj.user
+
+# Build outputs
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+
+# Rider / JetBrains caches
+.idea/
+*.dotCover
+*.sln.docstates
+
+# Visual Studio specific
+.vs/
+*.suo
+*.user
+*.cache
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.sln.metaproj
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.assets.json
+.nuget/
+
+# Entity Framework Migrations (optional)
+Migrations/
+
+# Logs and user-specific files
+*.log
+*.tlog
+*.user
+*.sdf
+*.db
+
+# Database files
+*.mdf
+*.ldf
+
+# Resharper / Rider files
+*.DotSettings.user
+_ReSharper*/
+resharper.xml
+
+# Publish outputs
+publish/
+out/
+
+# Rider workspace
+.idea/
+workspace.xml
+
+# macOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+desktop.ini
