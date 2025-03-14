@@ -11,3 +11,7 @@ public class AppSettingsReader
         return JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(path));
     }
 }
+
+internal record DbSettings(string ConnectionString);
+
+internal record AppSettings(DbSettings DbSettings);
